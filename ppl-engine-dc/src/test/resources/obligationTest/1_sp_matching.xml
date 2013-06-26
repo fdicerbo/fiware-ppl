@@ -1,0 +1,24 @@
+<sp:Attribute ID="SP356043016" matching="false"
+	AttributeURI="http://www.w3.org/2006/vcard/ns#email"  xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:sp="http://www.primelife.eu/ppl/stickypolicy" xmlns:obmm="http://www.primelife.eu/ppl/obligation/mismatch"
+	xmlns:ppl="http://www.primelife.eu/ppl" xmlns:ob="http://www.primelife.eu/ppl/obligation"
+	xmlns:aumm="http://www.primelife.eu/ppl/authorization/mismatch"
+	xmlns:cl="http://www.primelife.eu/ppl/claims" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os"
+	xmlns:ns12="urn:oasis:names:tc:xacml:2.0:context:schema:os" xmlns:ns10="http://www.w3.org/2001/04/xmlenc#"
+	xmlns:samla="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns11="http://www.w3.org/2000/09/xmldsig#">
+	<ppl:AuthorizationsSet matching="true">
+	</ppl:AuthorizationsSet>
+	<ob:ObligationsSet>
+		<ob:Obligation>
+			<ob:TriggersSet>
+				<ob:TriggerPersonalDataAccessedForPurpose>
+					<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+					<ob:MaxDelay>
+						<ob:Duration>P0Y0M0DT0H5M0S</ob:Duration>
+					</ob:MaxDelay>
+				</ob:TriggerPersonalDataAccessedForPurpose>
+			</ob:TriggersSet>
+			<ob:ActionLog />
+		</ob:Obligation>
+	</ob:ObligationsSet>
+</sp:Attribute>

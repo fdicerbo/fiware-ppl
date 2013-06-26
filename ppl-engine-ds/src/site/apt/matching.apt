@@ -1,0 +1,45 @@
+	The matching process is concerned on matching authorizations and obligations.
+	This component is represented by <<<com.sap.research.primelife.ds.pdp.matching>>> package.
+	It contains an interface and an abstract class for more abstract point of view.
+	Unfortunately those files are not used (their proper functionalities as
+	interface and abstract class) because of the numerous changes of the design
+	of the language and the implementation. This point has to be considered
+	in the future to have better software engineering.
+
+	The entry point of the matching component is <<<PolicyMatcher>>> class.
+	The package contains also two other classes;
+	<<<AuthorizationsMatcher>>> for authorizations matching and
+	<<<ObligationsMatcher>>> for the obligations matching.
+
+Obligations Matcher
+
+	The obligations matching engine is developed by EMIC as a Web Service,
+	see the documentation of the Obligation Handler artifact for more details.
+
+Authorizations Matcher
+
+	The authorization matching processes authorizations for purpose and authorization for downstream usage.
+	For the sequence of the matching, see the next section.
+
+Matching sequence
+
+	The matching component makes the matching for only one PII.
+	Which mean it doesn’t take a policy and preference and make the matching of them,
+	but it take the attribute name and the DataHandlingPolicy and the DataHandlingPreferences
+	and make the matching of these information and return the stickyPolicy of
+	one PII in <<<AttributeType>>> type from the <<<eu.primelife.ppl.stickypolicy.impl>>> package.
+
+	The main point entry of the matching engine is <<<PolicyMatcher>>> class
+	that has to use the <<<matcher()>>> function. So we process the authorization matching,
+	after the obligation matching, and finally we process the mismatch,
+	if  it is the case.
+
+* Authorizations matching sequence
+
+	The authorization matching specification is described in the technical documentation: 
+	\\Fncelhs0\research\Members\Interns\2010\NJEHAkram_TRABELSISlim\Delivrable\Documentation\Matching technical decoumentation
+
+* Mismatch sequence
+
+	For the mismatch, we check the matching result of the obligation and authorization.
+	If there’s a mismatch in one of them, we create a mismatch type and we add the specific mismatches.

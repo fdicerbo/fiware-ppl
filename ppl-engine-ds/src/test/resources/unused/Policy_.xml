@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ppl:Policy xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.primelife.eu/ppl PrimeLifeSchema.xsd http://www.primelife.eu/ppl/credential PrimeLifeCredential.xsd http://www.primelife.eu/ppl/obligation PrimeLifeObligation.xsd urn:oasis:names:tc:xacml:2.0:policy:schema:os access_control-xacml-2.0-policy-schema-os.xsd"
+	PolicyId="policy1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+	
+	<xacml:Target>
+		<xacml:Subjects>
+			<xacml:Subject>
+				<xacml:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:rfc822Name-match">
+					<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://www.store.com/subscribe.html</xacml:AttributeValue>
+					<xacml:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+							DataType="urn:oasis:names:tc:xacml:1.0:data-type:rfc822Name"/></xacml:SubjectMatch>			
+			</xacml:Subject>
+		</xacml:Subjects>
+	</xacml:Target>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP0">
+		
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP1">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			<ppl:AuthzDownstreamUsage allowed="true" />
+		</ppl:AuthorizationsSet>
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP2">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+		</ppl:AuthorizationsSet>
+	</ppl:DataHandlingPolicy>
+		
+	<ppl:DataHandlingPolicy PolicyId="DHP3">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzDownstreamUsage allowed="false" />
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+			<!-- delete all after 1 year -->
+		</ob:ObligationsSet>
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP4">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.primelife.eu/purposes/any</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+		</ppl:AuthorizationsSet>
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP5">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/tailoring</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/health</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			
+			<ppl:AuthzDownstreamUsage allowed="true" />
+		</ppl:AuthorizationsSet>
+	</ppl:DataHandlingPolicy>
+
+
+	<cr:CredentialRequirements>
+		<cr:Credential CredentialId="#eid"/>
+
+		<cr:Credential CredentialId="#creditcard"/>			
+	</cr:CredentialRequirements>
+
+	<ppl:ProvisionalActions>
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealUnderDHP">			
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.w3.org/2006/vcard/ns#email</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#DHP1</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealUnderDHP">
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.fgov.be/eID/address</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#DHP1</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#eid</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealToUnderDHP">
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.banking.org/CreditCard/cardnumber</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.ogone.com</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#DHP2</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#creditcard</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealToUnderDHP">
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.banking.org/CreditCard/expirationdate</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.ogone.com</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#DHP2</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#creditcard</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+
+	</ppl:ProvisionalActions>
+	
+	
+</ppl:Policy>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ppl:PolicySet >
+<ppl:Policy xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	
+	PolicyId="policy1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+	
+	<xacml:Target>
+		<xacml:Subjects>
+			<xacml:Subject>
+				<xacml:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+					<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://www.google.com/subscribe.html</xacml:AttributeValue>
+					<xacml:SubjectAttributeDesignator AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"
+							DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+				</xacml:SubjectMatch>			
+			</xacml:Subject>
+		</xacml:Subjects>
+	</xacml:Target>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP0">
+		
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP1">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			<ppl:AuthzDownstreamUsage allowed="true" />
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+		<!--
+			Obligation to log within 5 minutes use of PII for purpose "contact"
+			within 15 minutes use of PII for purpose "delivery" within 30 seconds
+			use of PII for purpose "pseudo-analysis"
+		-->
+			<ob:Obligation>
+				<ob:TriggersSet>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H5M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/delivery</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H15M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/pseudo-analysis</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H0M30S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+				</ob:TriggersSet>
+				<ob:ActionLog />
+			</ob:Obligation>
+			<!-- Obligation to delete collected PII within 5 days -->
+			<ob:Obligation>
+				<ob:TriggersSet>
+					<ob:TriggerAtTime>
+						<ob:Start>
+							<ob:StartNow/>
+						</ob:Start>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M5DT0H0M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerAtTime>
+				</ob:TriggersSet>
+				<ob:ActionDeletePersonalData />
+			</ob:Obligation>
+		</ob:ObligationsSet>
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP2">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/tailoring</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/health</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+			<!--
+				Obligation to log within 5 minutes use of PII for purpose "contact"
+				within 15 minutes use of PII for purpose "delivery" within 30
+				seconds use of PII for purpose "pseudo-analysis"
+			-->
+			<ob:Obligation>
+				<ob:TriggersSet>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H5M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+					<ob:TriggerPersonalDataAccessedForPurpose xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/delivery</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H15M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/pseudo-analysis</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H0M30S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+				</ob:TriggersSet>
+				<ob:ActionLog />
+			</ob:Obligation>
+
+			<!-- Obligation to delete collected PII within 10 days -->
+			<ob:Obligation>
+				<ob:TriggersSet>
+					<ob:TriggerAtTime>
+						<ob:Start>
+							<ob:StartNow />
+						</ob:Start>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M10DT0H0M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerAtTime>
+				</ob:TriggersSet>
+				<ob:ActionDeletePersonalData />
+			</ob:Obligation>
+		</ob:ObligationsSet>
+	</ppl:DataHandlingPolicy>
+		
+	<ppl:DataHandlingPolicy PolicyId="DHP3">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			<ppl:AuthzDownstreamUsage allowed="true" />
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+			<!--
+				Obligation to log within 5 minutes use of PII for purpose "contact"
+				within 15 minutes use of PII for purpose "delivery" within 30
+				seconds use of PII for purpose "pseudo-analysis"
+			-->
+			<ob:Obligation>
+				<ob:TriggersSet>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H5M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+					<ob:TriggerPersonalDataAccessedForPurpose xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/delivery</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H15M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/pseudo-analysis</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H0M30S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+				</ob:TriggersSet>
+				<ob:ActionLog />
+			</ob:Obligation>
+
+			<!-- Obligation to delete collected PII within 10 days -->
+			<ob:Obligation>
+				<ob:TriggersSet>
+					<ob:TriggerAtTime>
+						<ob:Start>
+							<ob:StartNow />
+						</ob:Start>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M10DT0H0M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerAtTime>
+				</ob:TriggersSet>
+				<ob:ActionDeletePersonalData />
+			</ob:Obligation>
+		</ob:ObligationsSet>
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP4">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/tailoring</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/health</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+		<!--
+			Obligation to log within 5 minutes use of PII for purpose "contact"
+			within 15 minutes use of PII for purpose "delivery" within 30 seconds
+			use of PII for purpose "pseudo-analysis"
+		-->
+			<ob:Obligation>
+				<ob:TriggersSet>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H5M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/delivery</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H15M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+					<ob:TriggerPersonalDataAccessedForPurpose
+						xmlns="http://www.primelife.eu/PPL/obligation">
+						<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/pseudo-analysis</ppl:Purpose>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M0DT0H0M30S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerPersonalDataAccessedForPurpose>
+				</ob:TriggersSet>
+				<ob:ActionLog />
+			</ob:Obligation>
+			
+			<!-- Obligation to delete collected PII within 10 days -->
+			<ob:Obligation>
+				<ob:TriggersSet>
+					<ob:TriggerAtTime>
+						<ob:Start>
+							<ob:StartNow />
+						</ob:Start>
+						<ob:MaxDelay>
+							<ob:Duration>P0Y0M10DT0H0M0S</ob:Duration>
+						</ob:MaxDelay>
+					</ob:TriggerAtTime>
+				</ob:TriggersSet>
+				<ob:ActionDeletePersonalData />
+			</ob:Obligation>
+		</ob:ObligationsSet>
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:DataHandlingPolicy PolicyId="DHP5">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/tailoring</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/health</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			
+			<ppl:AuthzDownstreamUsage allowed="true" />
+		</ppl:AuthorizationsSet>
+	</ppl:DataHandlingPolicy>
+
+	<cr:CredentialRequirements>
+		<cr:Credential CredentialId="#eid"/>
+
+		<cr:Credential CredentialId="#creditcard"/>			
+	</cr:CredentialRequirements>
+
+	<ppl:ProvisionalActions>
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/Reveal">			
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.w3.org/2006/vcard/ns#address</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">DHP1</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+		
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealUnderDHP">			
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.w3.org/2006/vcard/ns#email</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">DHP2</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+ 		
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealUnderDHP">			
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.w3.org/2006/vcard/ns#firstName</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">DHP1</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+		
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealUnderDHP">			
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.w3.org/2006/vcard/ns#lastName</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">DHP1</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+		
+
+
+	</ppl:ProvisionalActions>
+	
+	
+</ppl:Policy>

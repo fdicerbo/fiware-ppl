@@ -1,0 +1,75 @@
+!SESSION 2012-09-28 11:20:36.781 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.6.0_27
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=fr_FR
+Command-line arguments:  -data C:\Fi-ware\WorkspacePrimeLifeWithoutEMIC\PrimeLifeV2\ppl-project\trunk -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.core.net 1 0 2012-09-28 11:20:38.872
+!MESSAGE System property http.proxyHost is not set but should be proxy.
+
+!ENTRY org.eclipse.core.net 1 0 2012-09-28 11:20:38.872
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2012-09-28 11:20:38.872
+!MESSAGE System property https.proxyHost is not set but should be proxy.
+
+!ENTRY org.eclipse.core.net 1 0 2012-09-28 11:20:38.872
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.core.net 1 0 2012-09-28 11:20:38.872
+!MESSAGE System property https.proxyHost is not set but should be proxy.
+
+!ENTRY org.eclipse.core.net 1 0 2012-09-28 11:20:38.872
+!MESSAGE System property https.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.ui 4 4 2012-09-28 11:20:39.433
+!MESSAGE Referenced part does not exist yet: org.eclipse.jdt.ui.PackageExplorer.
+
+!ENTRY com.perforce.team.core 1 0 2012-09-28 11:20:39.745
+!MESSAGE P4Java server factory loaded; version: 2010.1/275861; date: 2010/12/07
+
+!ENTRY com.perforce.team.core 1 0 2012-09-28 11:20:39.745
+!MESSAGE Using default charset: UTF-8; JVM charset: UTF-8
+
+!ENTRY com.perforce.team.core 1 0 2012-09-28 11:20:39.745
+!MESSAGE initializing system file command helper class: java.io.File
+
+!ENTRY com.perforce.team.core 1 0 2012-09-28 11:20:39.745
+!MESSAGE Using default RPC system file command helper: com.perforce.p4java.impl.mapbased.rpc.sys.helper.RpcSystemFileCommandsHelper
+
+!ENTRY com.perforce.team.core 1 0 2012-09-28 11:20:39.745
+!MESSAGE setting RPC system file helper to class com.perforce.team.core.p4java.P4JavaSysFileCommandsHelper
+
+!ENTRY org.eclipse.jface 2 0 2012-09-28 11:20:41.274
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-09-28 11:20:41.274
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.ui 4 4 2012-09-28 11:20:41.555
+!MESSAGE Bad extension specification
+
+!ENTRY org.eclipse.libra.facet 4 0 2012-09-28 11:20:41.555
+!MESSAGE startup class must implement org.eclipse.ui.IStartup
+
+!ENTRY com.google.gdt.eclipse.platform.shared 2 0 2012-09-28 11:20:42.585
+!MESSAGE org.mortbay.jetty: failed SocketConnector@0.0.0.0:50313: java.net.BindException: Address already in use: JVM_Bind
+
+!ENTRY com.google.gdt.eclipse.platform.shared 2 0 2012-09-28 11:20:42.585
+!MESSAGE org.mortbay.jetty: failed Server@74ee003d: java.net.BindException: Address already in use: JVM_Bind

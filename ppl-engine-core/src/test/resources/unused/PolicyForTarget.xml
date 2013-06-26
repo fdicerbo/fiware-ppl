@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ppl:Policy xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:cr="http://www.primelife.eu/ppl/credential" xmlns:ppl="http://www.primelife.eu/ppl" xmlns:ob="http://www.primelife.eu/ppl/obligation" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides" PolicyId="policyConvertion">
+    <xacml:Target>
+        <xacml:Subjects>
+            <xacml:Subject>
+                <xacml:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                    <xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://store.example.com</xacml:AttributeValue>
+                    <xacml:SubjectAttributeDesignator SubjectCategory="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" DataType="http://www.w3.org/2001/XMLSchema#anyURI" AttributeId="http://www.primelife.eu/ppl/DataControllerID"/>
+                </xacml:SubjectMatch>
+            </xacml:Subject>
+        </xacml:Subjects>
+    </xacml:Target>
+</ppl:Policy>

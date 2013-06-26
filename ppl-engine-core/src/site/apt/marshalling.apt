@@ -1,0 +1,17 @@
+	The package <<<com.sap.research.primelife.marshalling>>> provides the classes
+	to transform Java objects to XML data structures, and back.
+	For that, we used Java Architecture for XML Binding (JAXB).
+
+	<<<UnmarshallImpl>>> class that implements the <<<IUnmarshall>>> interface.
+	Unmarshalling means converting XML data structure into Java object.
+	There are various methods that provide this process,
+	using different input parameter to generate the Java object.
+
+	The same as <<<UnmarshllImpl>>> class, the <<<MarshallImpl>>> class which
+	implements the <<<IMarshall>>> interface, present multiple methods to marshal
+	a Java object to an XML data structure.
+
+	Both of the <<<MarshallImpl>>> and <<<UnmarshallImpl>>> classes use
+	an abstract way to make the transformation process for any object
+	to XML document and back, for sure,
+	only if it presents the appropriate JAXB annotation.

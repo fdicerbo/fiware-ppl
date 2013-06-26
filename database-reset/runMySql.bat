@@ -1,0 +1,1 @@
+C:\"Program Files (x86)"\"EasyPHP-5.3.8.0"\mysql\bin\mysqld.exe --general_log=1 --general_log_file=general.log

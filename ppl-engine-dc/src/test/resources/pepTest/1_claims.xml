@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cl:Claims xmlns:cr="http://www.primelife.eu/ppl/credential" xmlns:sp="http://www.primelife.eu/ppl/stickypolicy" xmlns:obmm="http://www.primelife.eu/ppl/obligation/mismatch" xmlns:ppl="http://www.primelife.eu/ppl" xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:aumm="http://www.primelife.eu/ppl/authorization/mismatch" xmlns:cl="http://www.primelife.eu/ppl/claims" xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:ns12="urn:oasis:names:tc:xacml:2.0:context:schema:os" xmlns:ns10="http://www.w3.org/2001/04/xmlenc#" xmlns:samla="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns11="http://www.w3.org/2000/09/xmldsig#">
+    <cl:Claim>
+        <samla:Assertion IssueInstant="2011-02-09T11:46:06.884+01:00" ID="assertion117082352" Version="2.0">
+            <samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+            <samla:Statement xsi:type="cl:ResponseType" Decision="Indeterminate" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <cl:MissingPII/>
+                <cl:DeneyPII/>
+            </samla:Statement>
+        </samla:Assertion>
+        <samla:Assertion IssueInstant="2011-02-09T11:46:06.884+01:00" ID="assertion1901394369" Version="2.0">
+            <samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+            <samla:AttributeStatement>
+                <samla:Attribute xsi:type="cl:AttributeType" StickyPolicyId="SP464299440" Name="http://www.example.org/names#display_name" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <samla:AttributeValue xsi:type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">John</samla:AttributeValue>
+                </samla:Attribute>
+            </samla:AttributeStatement>
+        </samla:Assertion>
+        <samla:Assertion IssueInstant="2011-02-09T11:46:06.884+01:00" ID="assertion1932265735" Version="2.0">
+            <samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+            <samla:AttributeStatement>
+                <samla:Attribute xsi:type="cl:AttributeType" StickyPolicyId="SP1720726127" Name="http://www.example.org/names#user_name" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <samla:AttributeValue xsi:type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">john_doe</samla:AttributeValue>
+                </samla:Attribute>
+            </samla:AttributeStatement>
+        </samla:Assertion>
+        <samla:Assertion IssueInstant="2011-02-09T11:46:06.884+01:00" ID="assertion2032782187" Version="2.0">
+            <samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+            <samla:AttributeStatement>
+                <samla:Attribute xsi:type="cl:AttributeType" StickyPolicyId="SP2087664363" Name="http://www.w3.org/2006/vcard/ns#email" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <samla:AttributeValue xsi:type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">john@example.com</samla:AttributeValue>
+                </samla:Attribute>
+            </samla:AttributeStatement>
+        </samla:Assertion>
+        <samla:Assertion IssueInstant="2011-02-09T11:46:06.884+01:00" ID="assertion784749975" Version="2.0">
+            <samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+            <samla:Statement xsi:type="cl:StickyPolicyStatementType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <sp:Attribute ID="SP464299440" matching="false" AttributeURI="http://www.example.org/names#display_name">
+                    <ppl:AuthorizationsSet matching="false">
+                        <ppl:AuthzDownstreamUsage mismatchId="mismatch1137903097" matching="false" allowed="true"/>
+                        <ppl:AuthzUseForPurpose matching="true">
+                            <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/pseudo-analysis</ppl:Purpose>
+                        </ppl:AuthzUseForPurpose>
+                    </ppl:AuthorizationsSet>
+                    <ob:ObligationsSet>
+                        <ob:Obligation matching="false">
+                            <ob:TriggersSet matching="false">
+                                <ob:TriggerPersonalDataAccessedForPurpose matching="false">
+                                    <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+                                    <ob:MaxDelay mismatchId="mismatchId_101" matching="false">
+                                        <ob:Duration>P0Y0M1DT0H0M0S</ob:Duration>
+                                    </ob:MaxDelay>
+                                </ob:TriggerPersonalDataAccessedForPurpose>
+                            </ob:TriggersSet>
+                            <ob:ActionLog/>
+                        </ob:Obligation>
+                    </ob:ObligationsSet>
+                    <sp:Mismatches>
+                        <aumm:AuthorizationsMismatch>
+                            <aumm:AuthzDownstreamUsage mismatchId="mismatch1137903097">
+                                <aumm:Policy allowed="true"/>
+                                <aumm:Preference/>
+                            </aumm:AuthzDownstreamUsage>
+                        </aumm:AuthorizationsMismatch>
+                        <sp:ObligationsMismatch>
+                            <obmm:Mismatch mismatchId="mismatchId_101">
+                                <obmm:Preference>
+                                    <ob:Duration>
+                                        <ob:Duration>P0Y0M0DT1H0M0S</ob:Duration>
+                                    </ob:Duration>
+                                </obmm:Preference>
+                                <obmm:Policy>
+                                    <ob:Duration>
+                                        <ob:Duration>P0Y0M1DT0H0M0S</ob:Duration>
+                                    </ob:Duration>
+                                </obmm:Policy>
+                                <obmm:Similarity>0.0</obmm:Similarity>
+                            </obmm:Mismatch>
+                        </sp:ObligationsMismatch>
+                    </sp:Mismatches>
+                </sp:Attribute>
+                <sp:Attribute ID="SP1720726127" matching="false" AttributeURI="http://www.example.org/names#user_name">
+                    <ppl:AuthorizationsSet matching="false">
+                        <ppl:AuthzDownstreamUsage allowed="false" matching="true"/>
+                        <ppl:AuthzUseForPurpose mismatchId="mismatch910303513" matching="false">
+                            <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+                            <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                        </ppl:AuthzUseForPurpose>
+                    </ppl:AuthorizationsSet>
+                    <ob:ObligationsSet>
+                        <ob:Obligation mismatchId="mismatchId_102" matching="false">
+                            <ob:TriggersSet>
+                                <ob:TriggerPersonalDataAccessedForPurpose>
+                                    <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                    <ob:MaxDelay>
+                                        <ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+                                    </ob:MaxDelay>
+                                </ob:TriggerPersonalDataAccessedForPurpose>
+                            </ob:TriggersSet>
+                            <ob:ActionLog/>
+                        </ob:Obligation>
+                        <ob:Obligation>
+                            <ob:TriggersSet>
+                                <ob:TriggerPersonalDataAccessedForPurpose>
+                                    <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                    <ob:MaxDelay>
+                                        <ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+                                    </ob:MaxDelay>
+                                </ob:TriggerPersonalDataAccessedForPurpose>
+                            </ob:TriggersSet>
+                            <ob:ActionLog/>
+                        </ob:Obligation>
+                    </ob:ObligationsSet>
+                    <sp:Mismatches>
+                        <aumm:AuthorizationsMismatch>
+                            <aumm:AuthzUseForPurpose mismatchId="mismatch910303513">
+                                <aumm:Policy>
+                                    <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+                                    <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                </aumm:Policy>
+                                <aumm:Preference>
+                                    <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+                                    <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                </aumm:Preference>
+                            </aumm:AuthzUseForPurpose>
+                        </aumm:AuthorizationsMismatch>
+                        <sp:ObligationsMismatch>
+                            <obmm:Mismatch mismatchId="mismatchId_102">
+                                <obmm:Preference>
+                                    <ob:Obligation>
+                                        <ob:TriggersSet>
+                                            <ob:TriggerPersonalDataAccessedForPurpose>
+                                                <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+                                                <ob:MaxDelay>
+                                                    <ob:Duration>P0Y0M0DT0H5M0S</ob:Duration>
+                                                </ob:MaxDelay>
+                                            </ob:TriggerPersonalDataAccessedForPurpose>
+                                        </ob:TriggersSet>
+                                        <ob:ActionLog/>
+                                    </ob:Obligation>
+                                </obmm:Preference>
+                                <obmm:Policy>
+                                    <ob:Obligation>
+                                        <ob:TriggersSet>
+                                            <ob:TriggerPersonalDataAccessedForPurpose>
+                                                <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                                <ob:MaxDelay>
+                                                    <ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+                                                </ob:MaxDelay>
+                                            </ob:TriggerPersonalDataAccessedForPurpose>
+                                        </ob:TriggersSet>
+                                        <ob:ActionLog/>
+                                    </ob:Obligation>
+                                </obmm:Policy>
+                                <obmm:Similarity>0.5</obmm:Similarity>
+                            </obmm:Mismatch>
+                        </sp:ObligationsMismatch>
+                    </sp:Mismatches>
+                </sp:Attribute>
+                <sp:Attribute ID="SP2087664363" matching="false" AttributeURI="http://www.w3.org/2006/vcard/ns#email">
+                    <ppl:AuthorizationsSet matching="false">
+                        <ppl:AuthzDownstreamUsage allowed="true" matching="true"/>
+                        <ppl:AuthzUseForPurpose mismatchId="mismatch143515245" matching="false">
+                            <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+                            <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+                            <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                        </ppl:AuthzUseForPurpose>
+                    </ppl:AuthorizationsSet>
+                    <ob:ObligationsSet>
+                        <ob:Obligation matching="false">
+                            <ob:TriggersSet matching="false">
+                                <ob:TriggerPersonalDataAccessedForPurpose matching="false">
+                                    <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                    <ob:MaxDelay mismatchId="mismatchId_103" matching="false">
+                                        <ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+                                    </ob:MaxDelay>
+                                </ob:TriggerPersonalDataAccessedForPurpose>
+                            </ob:TriggersSet>
+                            <ob:ActionLog/>
+                        </ob:Obligation>
+                        <ob:Obligation>
+                            <ob:TriggersSet>
+                                <ob:TriggerPersonalDataAccessedForPurpose>
+                                    <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+                                    <ob:MaxDelay>
+                                        <ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+                                    </ob:MaxDelay>
+                                </ob:TriggerPersonalDataAccessedForPurpose>
+                            </ob:TriggersSet>
+                            <ob:ActionLog/>
+                        </ob:Obligation>
+                        <ob:Obligation mismatchId="mismatchId_106" matching="false">
+                            <ob:TriggersSet>
+                                <ob:TriggerPersonalDataAccessedForPurpose>
+                                    <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                    <ob:MaxDelay>
+                                        <ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+                                    </ob:MaxDelay>
+                                </ob:TriggerPersonalDataAccessedForPurpose>
+                            </ob:TriggersSet>
+                            <ob:ActionLog/>
+                        </ob:Obligation>
+                        <ob:Obligation>
+                            <ob:TriggersSet>
+                                <ob:TriggerAtTime>
+                                    <ob:Start>
+                                        <ob:DateAndTime>2011-02-09T11:46:06.8842314+01:00</ob:DateAndTime>
+                                    </ob:Start>
+                                    <ob:MaxDelay>
+                                        <ob:Duration>P0Y0M7DT0H0M0S</ob:Duration>
+                                    </ob:MaxDelay>
+                                </ob:TriggerAtTime>
+                            </ob:TriggersSet>
+                            <ob:ActionDeletePersonalData/>
+                        </ob:Obligation>
+                    </ob:ObligationsSet>
+                    <sp:Mismatches>
+                        <aumm:AuthorizationsMismatch>
+                            <aumm:AuthzUseForPurpose mismatchId="mismatch143515245">
+                                <aumm:Policy>
+                                    <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+                                    <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+                                    <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                </aumm:Policy>
+                                <aumm:Preference/>
+                            </aumm:AuthzUseForPurpose>
+                        </aumm:AuthorizationsMismatch>
+                        <sp:ObligationsMismatch>
+                            <obmm:Mismatch mismatchId="mismatchId_103">
+                                <obmm:Preference>
+                                    <ob:Duration>
+                                        <ob:Duration>P0Y0M0DT0H0M45S</ob:Duration>
+                                    </ob:Duration>
+                                </obmm:Preference>
+                                <obmm:Policy>
+                                    <ob:Duration>
+                                        <ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+                                    </ob:Duration>
+                                </obmm:Policy>
+                                <obmm:Similarity>0.0</obmm:Similarity>
+                            </obmm:Mismatch>
+                            <obmm:Mismatch mismatchId="mismatchId_106">
+                                <obmm:Preference>
+                                    <ob:Obligation>
+                                        <ob:TriggersSet>
+                                            <ob:TriggerPersonalDataAccessedForPurpose>
+                                                <ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/pseudo-analysis</ppl:Purpose>
+                                                <ob:MaxDelay>
+                                                    <ob:Duration>P0Y0M0DT0H5M0S</ob:Duration>
+                                                </ob:MaxDelay>
+                                            </ob:TriggerPersonalDataAccessedForPurpose>
+                                        </ob:TriggersSet>
+                                        <ob:ActionLog/>
+                                    </ob:Obligation>
+                                </obmm:Preference>
+                                <obmm:Policy>
+                                    <ob:Obligation>
+                                        <ob:TriggersSet>
+                                            <ob:TriggerPersonalDataAccessedForPurpose>
+                                                <ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+                                                <ob:MaxDelay>
+                                                    <ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+                                                </ob:MaxDelay>
+                                            </ob:TriggerPersonalDataAccessedForPurpose>
+                                        </ob:TriggersSet>
+                                        <ob:ActionLog/>
+                                    </ob:Obligation>
+                                </obmm:Policy>
+                                <obmm:Similarity>0.5</obmm:Similarity>
+                            </obmm:Mismatch>
+                        </sp:ObligationsMismatch>
+                    </sp:Mismatches>
+                </sp:Attribute>
+            </samla:Statement>
+        </samla:Assertion>
+    </cl:Claim>
+</cl:Claims>

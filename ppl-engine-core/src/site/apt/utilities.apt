@@ -1,0 +1,25 @@
+	The <<<com.sap.research.primelife.utils>>> package contains the classes
+	needed to have some common useful functionality.
+
+	This package contains different classes;
+
+	* The <<<IdGenerator>>> class provides static methods to generate random
+	<<<long>>>, <<<integer>>> and positive integer numbers.
+	Those method are generally used to generate unique Identifier of a sticky policy,
+	mismatching and assertion element.
+
+	* The <<<ConverterFunctions>>> class provides different static methods
+	to convert different data types from one format to another one.
+
+		* The <<<fromPPLTargetToHerasTarget()>>> method converts
+		a PrimeLife <<<TargetType>>> object (class <<<eu.primelife.ppl.policy.xacml.impl.TargetType>>>)
+		to HERAS <<<TargetType>>> object (class <<<org.heras.xacml.core.policy.impl.TargetType>>>).
+		This method is used in the access control enforcement part.
+		This enforcement is processed by the HERAS XACML implementation.
+		So for that, we need to convert the <<<Target>>> object that is present in PrimeLife type,
+		to HERAS <<<Target>>> type object, since PPL and HERAS use different data types.
+
+
+		* <<<sapPplToIbmPpl()>>> - conversion from PPL Policy to IBM Policy.
+
+	* <<<Utils>>> class: contains other useful functions.

@@ -1,0 +1,11 @@
+	Core module contains common classes used by Data Subject and Data Controller:
+
+	* Data Access Objects.
+
+	* Marshaler and unmarshaler classes.
+
+	* Initializer.
+
+	* Exceptions.
+
+	* Utility classes.

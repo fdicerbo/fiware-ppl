@@ -1,0 +1,147 @@
+	The sub-component attribute enforcement provides the way to check, at the first point, if the asked PII is found in the Data Base or not, and if the access control is enforced, if the PII exist in the database.
+
+	The classes are defined in the <<<com.sap.research.primelife.ds.pdp.attributeEnforcment>>> package.
+	It contains these classes:
+
+	* AttributeEnforcement.java: for non certified PII
+	* CredAttributeEnforcement.java: for the certified PII
+	* AttributeEnforResponse.java: the response of the process
+
+Non-certified PII
+
+	Class <<<AttributeEnforcement>>>.
+
+	For retrieving the non certified PII, we make a query to the data base
+	to check if the PII exist or not.
+
+	If it doesn’t exist, we mention this in the response, otherwise we get
+	the preferences of the PII, and we check which one is enforceable for the DC.
+
+	NB: Until now, if we found the first preference that the DC can enforce,
+	we stop and we consider this preference, in the future, it has to take
+	into account the different policy combining algorithm and the different
+	rule combining algorithm, also, including the conflict detection.
+
+	To retrieve the PII, we use the specific <<<PIIDao>>> class in the.
+	For that, we use the <<<findObject()>>> method that takes the attribute name
+	parameter to retrieve it (see the structure of the PII data type).
+	This is different from the certified (credential)
+	PII. See next section for more details.
+
+	For the enforcement, we use the HERAS XACML implementation,
+	for that we transform the target from PPL <<<TargetType>>> to HERAS <<<TargetType>>>.
+
+Certified PII
+
+	Class <<<CredAttributeEnforcement>>>.
+
+	For the certified PII, the behavior of the process is not different from
+	the one of the non certified PII presented above.
+	The difference is in the checking of the PII existence.
+
+	In fact, the PII structure is defined by:
+
+	* <<AttributeName>>, describing the name identifier of the PII, for example,
+	in the uncertified PII <<<http://www.w3.org/2006/vcard/ns#email>>>
+	which indicates the email PII, or also <<<http://www.fgov.be/eID/address>>>
+	to indicates the address information;
+
+	* <<AttributeValue>>, describing the value of the PII,
+	for example if we consider the previous AttributeName examples,
+	we can have <<<mail@mail.com>>> as a value corresponding to the
+	<<<http://www.w3.org/2006/vcard/ns#email>>> AttributeValue;
+
+	* Other attributes.
+
+	For the certified PII, the meaning of the attributes is different.
+	In fact, in data base, we will not have the values of the attributes name,
+	because they are hold by the trusted and the specific certification organizations.
+	As the credential document can be composed by different attributes,
+	we have to distinguish between the different preferences for each attribute
+	within a same credential, to provide different credential combinations choice.
+
+	In the certified PII case, the meaning of the attributes is:
+
+	* <<AttributeName>>, describes attribute name of the one credential attribute,
+	example the value of the PII, for example if we consider the previous AttributeName examples,
+	<<<http://www.banking.org/CreditCard/cardnumber>>>.
+
+	* <<AttributeValue>>, describes the <<<credentialStoreId>>> (the IBM credential id).
+	It’s a string identifier. This is used to can identify the credential.
+
+	So here, let’s consider an example to better explain the meaning of the attributes.
+
+	Let’s suppose that we have two credit card (visa and master card with
+	different numbers and expiration date), and we want to make a preference
+	for each attribute of the credit card (card number, expiration date, name, ...).
+	So when a DC asks to reveal the credit card number and the expiration date of one DS,
+	the credential store will provide two combinations.
+	One with each credit card (because the DS has two).
+
+	So we have to make a matching for each attribute of each credit card,
+	but with considering the combination of the attributes for each credit card
+	(matching DHPolicy and DHP preferences of the credit card number and
+	expiration date of the same credit card).
+	So we can have problem because if we consider the first data structure and
+	meaning of the uncertified PII, we can retrieve different preferences of
+	different attributes (credit card, expiration date) for different credit card
+	(for example, card number from visa, and expiration date from Master card),
+	which is wrong.
+
+	To avoid this problem, we use the second meaning of the PII data structure.
+	So, in AttributeName we will have the attribute of the credential
+	(for example <<<http://www.banking.org/CreditCard/cardnumber>>>),
+	and in the AttributeValue, we will have the credential id (of the IBM store).
+
+	So when making the request, we indicate both of the attributes,
+	to be sure that we are requesting the different credential attribute from the same credential.
+
+Examples
+
+	Here example with values:
+
+	<<Visa, credit card:>>
+
+	* IBM side - ID: credVisa (in the IBM credential store)
+
+	* Local data base:
+
+		* For the card number attribute
+
+			[AttributeName] <<<http://www.banking.org/CreditCard/cardnumber>>>
+
+			[AttributeValue] <<<credVisa>>>
+
+			[PolicyOrPolicySet] relation to preferences
+
+		* For the expiration date
+
+			[AttributeName] <<<http://www.banking.org/CreditCard/expirationdate>>>
+
+			[AttributeValue] <<<credVisa>>>
+
+			[PolicyOrPolicySet] relation to preferences
+
+	<<Master card, credit card:>>
+
+	* IBM side - ID: credMaster (in the IBM credential store)
+
+	* Local data base:
+
+		* For the card number attribute
+
+			[AttributeName] <<<http://www.banking.org/CreditCard/cardnumber>>>
+
+			[AttributeValue] <<<credMaster>>>
+
+			[PolicyOrPolicySet] relation to preferences
+
+		* For the expiration date
+
+			[AttributeName] <<<http://www.banking.org/CreditCard/expirationdate>>>
+
+			[AttributeValue] <<<credMaster>>>
+
+			[PolicyOrPolicySet] relation to preferences
+
+	So as defined, we can avoid the conflict combination between the credential attributes.

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ppl:Policy xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.primelife.eu/ppl PrimeLifeSchema.xsd http://www.primelife.eu/ppl/credential PrimeLifeCredential.xsd http://www.primelife.eu/ppl/obligation PrimeLifeObligation.xsd urn:oasis:names:tc:xacml:2.0:policy:schema:os access_control-xacml-2.0-policy-schema-os.xsd"
+	PolicyId="policy123" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+	
+	<xacml:Target>
+		
+	</xacml:Target>
+	
+	<ppl:DataHandlingPolicy PolicyId="#DHP1">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			<ppl:AuthzDownstreamUsage allowed="true" />
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+      
+		</ob:ObligationsSet>
+	</ppl:DataHandlingPolicy>
+		
+	<ppl:DataHandlingPolicy PolicyId="#DHP2">
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/payment</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			<ppl:AuthzDownstreamUsage allowed="false" />
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+      
+		</ob:ObligationsSet>
+	</ppl:DataHandlingPolicy>
+	
+	<ppl:ProvisionalActions>
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealUnderDHP">			
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.w3.org/2006/vcard/ns#email</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#DHP1</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+
+		<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealUnderDHP">
+			<xacml:AttributeValue DataType="xs:anyURI">http://www.fgov.be/eID/address</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#DHP1</xacml:AttributeValue>
+			<xacml:AttributeValue DataType="xs:anyURI">#eid</xacml:AttributeValue>
+		</ppl:ProvisionalAction>
+		
+	</ppl:ProvisionalActions>
+	
+	
+</ppl:Policy>

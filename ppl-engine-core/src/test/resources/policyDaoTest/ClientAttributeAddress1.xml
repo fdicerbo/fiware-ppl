@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ppl:Policy xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xf="http://www.w3.org/TR/2002/WD-xquery-operators-20020816/#"
+	xsi:schemaLocation="http://www.primelife.eu/ppl PrimeLifeSchema.xsd http://www.primelife.eu/ppl/credential PrimeLifeCredential.xsd http://www.primelife.eu/ppl/obligation PrimeLifeObligation.xsd urn:oasis:names:tc:xacml:2.0:policy:schema:os access_control-xacml-2.0-policy-schema-os.xsd"
+	PolicyId="policy1" RuleCombiningAlgId="">
+
+	<xacml:Target>
+		<xacml:Subjects>
+			<xacml:Subject>
+				<xacml:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">
+						http://www.store.com
+					</xacml:AttributeValue>
+					<xacml:SubjectAttributeDesignator
+						AttributeId="urn:oasis:names:tc:xacml:2.0:example:attribute:domainname"
+						DataType="http://www.w3.org/2001/XMLSchema#string" />
+				</xacml:SubjectMatch>
+			</xacml:Subject>
+		</xacml:Subjects>
+	</xacml:Target>
+	
+	<ppl:DataHandlingPreferences>
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			<ppl:AuthzDownstreamUsage allowed="true">
+				<ppl:Policy PolicyId="policyxacml"
+					RuleCombiningAlgId="">
+					<xacml:Target>
+						
+					</xacml:Target>
+
+					<xacml:Rule RuleId="urn:oasis:names:tc:xacml:2.0:example:ruleid:1"
+						Effect="Permit">
+						<xacml:Description>
+							the ACP for the Downstream usage must be defined in different conditions
+						</xacml:Description>
+						<xacml:Condition>
+							<!-- The different conditions  -->
+							<xacml:Apply FunctionId=""></xacml:Apply>
+						</xacml:Condition>
+					</xacml:Rule>
+				</ppl:Policy>
+			</ppl:AuthzDownstreamUsage>
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+			<!-- delete all after 3 months -->
+		</ob:ObligationsSet>
+	</ppl:DataHandlingPreferences>
+	
+	
+</ppl:Policy>

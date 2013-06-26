@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns4:StickyPolicy xmlns="http://www.primelife.eu/ppl" xmlns:ns2="http://www.primelife.eu/ppl/obligation" xmlns:ns3="http://www.primelife.eu/ppl/authorization/mismatch" xmlns:ns4="http://www.primelife.eu/ppl/stickypolicy" xmlns:ns5="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:ns6="http://www.primelife.eu/ppl/credential">
+    <ns4:Attribute AttributeURI="http://www.w3.org/2006/vcard/ns#email">
+        <AuthorizationsSet matching="true">
+            <AuthzDownstreamUsage matching="true" allowed="false"/>
+            <AuthzUseForPurpose matching="true"/>
+        </AuthorizationsSet>
+        <ns2:ObligationsSet matching="true"/>
+    </ns4:Attribute>
+</ns4:StickyPolicy>

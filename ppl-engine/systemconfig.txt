@@ -1,0 +1,11 @@
+
+# Email configuration
+
+mail.smtp.host=mail.sap.corp
+mail.smtp.port=25
+from=paul.cervera.y.alvarez@sap.com
+
+# Log EventTrigger actions
+DS_log = EventTriggerDS_log.txt
+DC_log = EventTriggerDC_log.txt
+3P_log = EventTrigger3P_log.txt

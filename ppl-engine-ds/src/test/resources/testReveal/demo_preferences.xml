@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ppl:Policy xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xf="http://www.w3.org/TR/2002/WD-xquery-operators-20020816/#"
+
+	PolicyId="default"
+	RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+
+	<xacml:Target>
+
+	</xacml:Target>
+
+	<ppl:Rule Effect="Permit" RuleId="#testUpdatePrefGroups">
+		<xacml:Target>
+			<xacml:Subjects>
+				<xacml:Subject>
+					<xacml:SubjectMatch
+						MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+						<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://store.example.com
+						</xacml:AttributeValue>
+						<xacml:SubjectAttributeDesignator
+							AttributeId="http://www.primelife.eu/ppl/DataControllerID"
+							DataType="http://www.w3.org/2001/XMLSchema#anyURI" />
+					</xacml:SubjectMatch>
+				</xacml:Subject>
+			</xacml:Subjects>
+		<xacml:Actions>
+			<xacml:Action>
+				<xacml:ActionMatch
+					MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read
+					</xacml:AttributeValue>
+					<xacml:ActionAttributeDesignator
+						DataType="http://www.w3.org/2001/XMLSchema#string" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" />
+				</xacml:ActionMatch>
+			</xacml:Action>
+		</xacml:Actions>
+		</xacml:Target>
+
+		<ppl:DataHandlingPreferences>
+			<ppl:AuthorizationsSet>
+				<ppl:AuthzUseForPurpose>
+					<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+					<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+				</ppl:AuthzUseForPurpose>
+				<ppl:AuthzDownstreamUsage allowed="true" />
+			</ppl:AuthorizationsSet>
+
+			<ob:ObligationsSet>
+
+				<ob:Obligation>
+					<ob:TriggersSet>
+						<ob:TriggerPersonalDataAccessedForPurpose
+							xmlns="http://www.primelife.eu/PPL/obligation">
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+							<ob:MaxDelay>
+								<ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+							</ob:MaxDelay>
+						</ob:TriggerPersonalDataAccessedForPurpose>
+					</ob:TriggersSet>
+					<ob:ActionLog />
+				</ob:Obligation>
+
+			</ob:ObligationsSet>
+
+		</ppl:DataHandlingPreferences>
+
+	</ppl:Rule>
+
+
+</ppl:Policy>

@@ -1,0 +1,6 @@
+<project>
+	<body>
+		<menu ref="reports" />
+		<menu ref="parent" />
+	</body>
+</project>

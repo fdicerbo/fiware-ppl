@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns4:StickyPolicy xmlns="http://www.primelife.eu/ppl" xmlns:ns2="http://www.primelife.eu/ppl/obligation" xmlns:ns3="http://www.primelife.eu/ppl/authorization/mismatch" xmlns:ns4="http://www.primelife.eu/ppl/stickypolicy" xmlns:ns5="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:ns6="http://www.primelife.eu/ppl/credential">
+    <ns4:Attribute matching="false" AttributeURI="http://www.w3.org/2006/vcard/ns#email">
+        <AuthorizationsSet matching="false">
+            <AuthzDownstreamUsage allowed="true" mismatchId="mismatch1107991508" matching="false"/>
+            <AuthzUseForPurpose matching="true">
+                <Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</Purpose>
+                <Purpose>http://www.w3.org/2002/01/P3Pv1/admin</Purpose>
+                <Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</Purpose>
+            </AuthzUseForPurpose>
+        </AuthorizationsSet>
+        <ns2:ObligationsSet matching="true"/>
+        <ns4:Mismatches>
+            <ns3:AuthorizationsMismatch>
+                <ns3:AuthzDownstreamUsage mismatchId="mismatch1107991508">
+                    <ns3:Policy allowed="true"/>
+                    <ns3:Preference allowed="false"/>
+                </ns3:AuthzDownstreamUsage>
+            </ns3:AuthorizationsMismatch>
+        </ns4:Mismatches>
+    </ns4:Attribute>
+</ns4:StickyPolicy>

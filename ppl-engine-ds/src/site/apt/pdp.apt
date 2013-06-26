@@ -1,0 +1,32 @@
+	The PDP is defined by different subcomponents.
+	But we have the main entry of the PDP component and the defined result after processing.
+
+	The package <<<com.sap.research.primelife.ds.pdp>>> and subpackages define the PDP component.
+	In this main package, we have <<<IPDP>>> which defines the interface of the PDP,
+	<<<PDPImpl>>>, defines an abstract class of the PDP,
+	this contains the main common functionalities of the PDP of the DS.
+
+	The DS implementation is represented by the <<<PDPImpl>>> class file in the
+	<<<com.sap.research.primelife.ds.pdp>>> package.
+
+	The <<<PDPImpl>>> implements the <<<IPDP>>> interface and implement the only
+	function for the evaluation: <<<evaluate()>>> method.
+	For more information, refer to the Java doc of this function.
+
+	This function in the <<<PDP>>>, at the first it set up the DHP map,
+	this maps the DHP Id to DHP object value, after the credential map also.
+
+	After, we create a new <<<ProvisionalAction>>> instance by passing the policy
+	as a parameter. Also we pass the dhpMap to the provisional action instance to save it,
+	because it will be used by it.
+
+	Afterwards, the decision evaluation is made by the provisional action for each attribute.
+	In fact, this is due because the decision should be taken for each attribute
+	and depending on the provisional action.
+
+	We will call the <<<handle()>>> method of the provisional action,
+	this function will return a response of type <<<ProvisionalActResponse>>>
+	that contains the sticky policy result of the matching process,
+	the list of the missing PII, the list of the PII that present a <<<Deny>>> access,
+	the list of the PII that present a mismatch and the list of the response result
+	for each provisional action, in a map format.

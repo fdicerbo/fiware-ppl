@@ -1,0 +1,13 @@
+	The PEP component is represented by the ‘com.sap.research.primelife.pep’ package.
+
+	As the PDP, the PEP defines an interface and an abstract class that represent the common behavior of the DS PEP and DC PEP. There are two sub-packages, one for the DC, that is not defined yet, and the other for the DS that extends the APEP class.
+
+	The APEP class defines the process and the psrocessStringInput functions as entry point of the PEP. One takes a file parameter and the second a string format that contains the content of the policy claim.
+
+	Those two functions at one moment call the getClaimsToUi. This function misses the part of adding the credential claims part. In fact, to support this functionality, we should loop over the claims of the credential and we identify the type of the assertion, if the id starts by ‘credential’, we include this claim in the claims result by adding the stickyPolicy information about this credential.
+
+	There’s two others function; processPDPResponse and getClaimsToUiPDPResponse that are used only for the swing UI demo (package com.sap.research.primelife.pep.demo) by returning a PDPResponse.
+
+	Generally, the PEP is called by the UI, for example in the AccessResourceHandler.java class (package: com.sap.research.primelife.api.webServer). 
+
+	Also the PEP communicates with the credential handler.

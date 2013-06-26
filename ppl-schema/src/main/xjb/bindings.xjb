@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:hj="http://hyperjaxb3.jvnet.org/ejb/schemas/customizations"
+	xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
+	jaxb:extensionBindingPrefixes="hj orm">
+
+	<jaxb:bindings>
+		<jaxb:globalBindings localScoping="toplevel">
+			<jaxb:serializable />
+		</jaxb:globalBindings>
+	</jaxb:bindings>
+	
+	<!-- StickyPolicy bindings -->
+	<jaxb:bindings schemaLocation="../xsd/StickyPolicy.xsd">
+		<jaxb:bindings node="/xs:schema">
+			<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.stickypolicy.impl" />
+			</jaxb:schemaBindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+	
+	<!-- AuthorizationMismatch bindings -->
+	<jaxb:bindings schemaLocation="../xsd/PrimeLifeAuthorizationMismatch.xsd">
+		<jaxb:bindings node="/xs:schema">
+			<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.stickypolicy.authorization.impl" />
+			</jaxb:schemaBindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+	
+	<!-- ObligationMismatch bindings -->
+	<jaxb:bindings schemaLocation="../xsd/PrimeLifeObligationMismatch.xsd">
+		<jaxb:bindings node="/xs:schema">
+			<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.stickypolicy.obligation.impl" />
+			</jaxb:schemaBindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+	
+	<!-- Pii bindings -->
+	<jaxb:bindings schemaLocation="../xsd/PrimeLifePII.xsd" node="/xs:schema">
+		<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.pii.impl" />
+		</jaxb:schemaBindings>
+	</jaxb:bindings>
+	
+	<!-- Primelife principal bindings -->
+	<jaxb:bindings schemaLocation="../xsd/PrimeLifeSchema.xsd">
+		<jaxb:bindings node="/xs:schema">
+			<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.policy.impl" />
+			</jaxb:schemaBindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+	
+	<!-- Credential bindings -->
+	<jaxb:bindings schemaLocation="../xsd/PrimeLifeCredential.xsd">
+		<jaxb:bindings node="/xs:schema">
+			<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.policy.credential.impl" />
+			</jaxb:schemaBindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+	
+	
+	<!-- Obligation bindings -->
+	<jaxb:bindings schemaLocation="../xsd/PrimeLifeObligation.xsd">
+		<jaxb:bindings node="/xs:schema">
+			<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.policy.obligation.impl" />
+			</jaxb:schemaBindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+	
+	<!-- xacml bindings -->
+	<jaxb:bindings schemaLocation="../xsd/access_control-xacml-2.0-policy-schema-os.xsd">
+		<jaxb:bindings node="/xs:schema">
+			<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.policy.xacml.impl" />
+			</jaxb:schemaBindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+	
+	<!-- claims bindings -->
+	<jaxb:bindings schemaLocation="../xsd/PrimeLifeClaims.xsd">
+		<jaxb:bindings node="/xs:schema">
+			<jaxb:schemaBindings>
+				<jaxb:package name="eu.primelife.ppl.claims.impl" />
+			</jaxb:schemaBindings>
+		</jaxb:bindings>
+	</jaxb:bindings>
+	
+	
+</jaxb:bindings>

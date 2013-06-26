@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ppl:Policy xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xf="http://www.w3.org/TR/2002/WD-xquery-operators-20020816/#"
+	xsi:schemaLocation="http://www.primelife.eu/ppl PrimeLifeSchema.xsd http://www.primelife.eu/ppl/credential PrimeLifeCredential.xsd http://www.primelife.eu/ppl/obligation PrimeLifeObligation.xsd urn:oasis:names:tc:xacml:2.0:policy:schema:os access_control-xacml-2.0-policy-schema-os.xsd"
+
+	PolicyId="prefGroup1" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+
+	<xacml:Target>
+		
+	</xacml:Target>
+
+	<ppl:Rule Effect="Deny" RuleId="#username">
+		<xacml:Target>
+		<xacml:Subjects>
+			<xacml:Subject>
+				<xacml:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+					<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://store.example.com</xacml:AttributeValue>
+					<xacml:SubjectAttributeDesignator 
+							AttributeId="http://www.primelife.eu/ppl/DataControllerID"
+							DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+				</xacml:SubjectMatch>
+			</xacml:Subject>
+		</xacml:Subjects>
+		</xacml:Target>
+		<xacml:Actions>
+			<xacml:Action>
+				<xacml:ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</xacml:AttributeValue>
+					<xacml:ActionAttributeDesignator DataType="http://www.w3.org/2001/XMLSchema#string" AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"/>
+				</xacml:ActionMatch>
+			</xacml:Action>
+		</xacml:Actions>
+
+	</ppl:Rule>
+
+	
+</ppl:Policy>

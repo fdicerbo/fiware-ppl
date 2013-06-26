@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		This is the list of claims with (mis)matching sticky policies that the
+		PEP sends as input to the user interface, so that the user can make
+		her decision which claim to use.
+	-->
+<!-- 	
+<!DOCTYPE samla:Assertion [
+  <!ENTITY pplschemapath "file:///c:/documents&#37;20and&#37;20settings/nev/my&#37;20documents/primelife/D5.3.2/schema/">
+]>
+ -->
+
+<cl:Claims xmlns="http://www.primelife.eu/ppl/claims"
+	xmlns:cl="http://www.primelife.eu/ppl/claims"
+	xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation"
+	xmlns:obmm="http://www.primelife.eu/ppl/obligation/mismatch"
+	xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:sp="http://www.primelife.eu/ppl/stickypolicy"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os"
+	xmlns:samla="urn:oasis:names:tc:SAML:2.0:assertion" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.primelife.eu/ppl PrimeLifeSchema.xsd 
+	http://www.primelife.eu/ppl/credential PrimeLifeCredential.xsd 
+	http://www.primelife.eu/ppl/obligation PrimeLifeObligation.xsd
+	http://www.primelife.eu/ppl/obligation/mismatch PrimeLifeObligationMismatch.xsd
+	http://www.primelife.eu/ppl/claims PrimeLifeClaims.xsd 
+	http://www.primelife.eu/ppl/stickypolicy StickyPolicy.xsd
+	urn:oasis:names:tc:xacml:2.0:policy:schema:os access_control-xacml-2.0-policy-schema-os.xsd 
+	urn:oasis:names:tc:SAML:2.0:assertion http://docs.oasis-open.org/security/saml/v2.0/saml-schema-assertion-2.0.xsd">
+
+	<cl:Claim>
+		
+		<samla:Assertion Version="2.0"
+			ID="assertionResponse" IssueInstant="2010-08-31T23:59:59">
+			<samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+			<samla:Statement xsi:type="cl:ResponseType" Decision="Indeterminate"/>
+		</samla:Assertion>
+		
+		<samla:Assertion Version="2.0"
+			ID="assertion02a497f1dcc357b71003f5" IssueInstant="2010-08-31T23:59:59">
+			<samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+			
+			<samla:Statement xsi:type="cl:StickyPolicyStatementType">
+				<sp:Attribute ID="#SPaddress" matching="true" AttributeURI="http://www.fgov.be/eId/address">
+					<ppl:AuthorizationsSet>
+						<ppl:AuthzUseForPurpose>
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/statistics</ppl:Purpose>
+							<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+						</ppl:AuthzUseForPurpose>
+						<ppl:AuthzDownstreamUsage allowed="true">
+							<ppl:Policy PolicyId="#SP1downstream"
+								RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+								<xacml:Target />
+								<ppl:Rule Effect="Permit" RuleId="#downstreampreference1">
+									<xacml:Target>
+										<xacml:Subjects>
+											<xacml:Subject>
+												<xacml:SubjectMatch
+													MatchId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+													<xacml:AttributeValue DataType="xs:boolean">true</xacml:AttributeValue>
+													<xacml:SubjectAttributeDesignator
+														DataType="xs:boolean"
+														AttributeId="http://www.european-privacy-seal.eu/hasEuropeanPrivacySeal" />
+												</xacml:SubjectMatch>
+											</xacml:Subject>
+										</xacml:Subjects>
+									</xacml:Target>
+									<ppl:DataHandlingPreferences>
+										<ppl:AuthorizationsSet>
+											<ppl:AuthzUseForPurpose>
+												<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+												<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+											</ppl:AuthzUseForPurpose>
+										</ppl:AuthorizationsSet>
+										<ob:ObligationsSet>
+											<ob:Obligation>
+												<ob:TriggersSet>
+													<ob:TriggerAtTime>
+														<ob:Start>
+															<ob:StartNow />
+														</ob:Start>
+														<ob:MaxDelay>
+															<ob:Duration>P3M</ob:Duration>
+														</ob:MaxDelay>
+													</ob:TriggerAtTime>
+												</ob:TriggersSet>
+												<ob:ActionDeletePersonalData />
+											</ob:Obligation>
+										</ob:ObligationsSet>
+									</ppl:DataHandlingPreferences>
+								</ppl:Rule>
+							</ppl:Policy>
+						</ppl:AuthzDownstreamUsage>
+					</ppl:AuthorizationsSet>
+					<ob:ObligationsSet>
+						<ob:Obligation>
+							<ob:TriggersSet>
+								<ob:TriggerAtTime>
+									<ob:Start>
+										<ob:StartNow />
+									</ob:Start>
+									<ob:MaxDelay>
+										<ob:Duration>P1Y</ob:Duration>
+									</ob:MaxDelay>
+								</ob:TriggerAtTime>
+							</ob:TriggersSet>
+							<ob:ActionDeletePersonalData />
+						</ob:Obligation>
+					</ob:ObligationsSet>
+				</sp:Attribute>
+
+				<sp:Attribute ID="#SPcardnumber" matching="false" AttributeURI="http://www.banking.org/CreditCard/cardnumber">
+					<ppl:AuthorizationsSet matching="true">
+						<ppl:AuthzUseForPurpose>
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/payment</ppl:Purpose>
+						</ppl:AuthzUseForPurpose>
+					</ppl:AuthorizationsSet>
+					
+					<ob:ObligationsSet matching="false">
+						<ob:Obligation matching="false">
+							<ob:TriggersSet matching="false">
+								<ob:TriggerAtTime matching="false">
+									<ob:Start matching="true">
+										<ob:StartNow />
+									</ob:Start>
+									<ob:MaxDelay matching="false" mismatchId="mismatch1">
+										<ob:Duration>P1M</ob:Duration>
+									</ob:MaxDelay>
+								</ob:TriggerAtTime>
+							</ob:TriggersSet>
+							<ob:ActionDeletePersonalData matching="true" />
+						</ob:Obligation>
+					</ob:ObligationsSet>
+					
+					<sp:Mismatches>
+						<sp:ObligationsMismatch>
+							<obmm:Duration mismatchId="mismatch1">
+								<obmm:Preference>
+									<ob:Duration>P7D</ob:Duration>
+								</obmm:Preference>
+								<obmm:Policy>
+									<ob:Duration>P1M</ob:Duration>
+								</obmm:Policy>
+							</obmm:Duration>
+						</sp:ObligationsMismatch>
+					</sp:Mismatches>
+				</sp:Attribute>
+
+				<sp:Attribute ID="#SPexpirationdate" matching="true" AttributeURI="http://www.banking.org/CreditCard/expirationdate">
+					<ppl:AuthorizationsSet>
+						<ppl:AuthzUseForPurpose>
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/payment</ppl:Purpose>
+						</ppl:AuthzUseForPurpose>
+					</ppl:AuthorizationsSet>
+					<ob:ObligationsSet>
+						<ob:Obligation>
+							<ob:TriggersSet>
+								<ob:TriggerAtTime>
+									<ob:Start>
+										<ob:StartNow />
+									</ob:Start>
+									<ob:MaxDelay>
+										<ob:Duration>P1M</ob:Duration>
+									</ob:MaxDelay>
+								</ob:TriggerAtTime>
+							</ob:TriggersSet>
+							<ob:ActionDeletePersonalData />
+						</ob:Obligation>
+					</ob:ObligationsSet>
+				</sp:Attribute>
+
+			</samla:Statement>
+		</samla:Assertion>
+
+
+		<samla:Assertion IssueInstant="2010-08-31T23:59:59"
+			ID="credentialf81c48902bc34d40208ca1" Version="2.0">
+			<samla:Issuer>http://www.fgov.be</samla:Issuer>
+			<samla:AttributeStatement>
+				<samla:Attribute Name="http://www.fgov.be/eId/address"
+					cl:stickyPolicyID="#SPaddress">
+					<samla:AttributeValue>Kerkstraat 1, 1000 Brussel
+					</samla:AttributeValue>
+				</samla:Attribute>
+			</samla:AttributeStatement>
+		</samla:Assertion>
+
+		<samla:Assertion IssueInstant="2010-08-31T23:59:59"
+			ID="credential812c05bb7a126b7fa204c1" Version="2.0">
+			<samla:Issuer>http://www.visa.com</samla:Issuer>
+			<samla:AttributeStatement>
+				<samla:Attribute Name="http://www.banking.org/CreditCard/cardnumber"
+					cl:stickyPolicyID="#SPcardnumber">
+					<samla:AttributeValue>1234 5678 9012 3456</samla:AttributeValue>
+				</samla:Attribute>
+				<samla:Attribute Name="http://www.banking.org/CreditCard/expirationdate"
+					cl:stickyPolicyID="#SPexpirationdate">
+					<samla:AttributeValue>2012-01-01</samla:AttributeValue>
+				</samla:Attribute>
+			</samla:AttributeStatement>
+		</samla:Assertion>
+
+		<samla:Assertion IssueInstant="2010-08-31T23:59:59"
+			ID="assertion078908d4089aaa4c04948" Version="2.0">
+			<samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+			<samla:AttributeStatement>
+				<samla:Attribute Name="http://www.w3.org/2006/vcard/ns#email"
+					cl:stickyPolicyID="#SPaddress">
+					<samla:AttributeValue>
+						<!-- To be filled in manually by user  -->
+					</samla:AttributeValue>
+				</samla:Attribute>
+			</samla:AttributeStatement>
+		</samla:Assertion>
+
+		<samla:Assertion IssueInstant="2010-08-31T23:59:59"
+			ID="assertion1d6215689f5c5c013da860" Version="2.0">
+			<samla:Issuer>http://www.primelife.eu/ppl/credential/CrossCredentialAssertion</samla:Issuer>
+			<samla:Statement xsi:type="cl:ConditionStatementType">
+				<xacml:Condition>
+					<xacml:Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+						<cr:Apply
+							FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-less-than-or-equal">
+							<cr:CredentialAttributeDesignator
+								CredentialId="credentialf81c48902bc34d40208ca1" DataType="xs:date"
+								AttributeId="http://www.fgov.be/eID/birthdate" />
+							<xacml:Apply
+								FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-subtract-yearMonthDuration">
+								<xacml:AttributeValue DataType="xs:date">2010-08-31
+								</xacml:AttributeValue>
+								<xacml:AttributeValue
+									DataType="http://www.w3.org/TR/2002/WD-xquery-operators-20020816#yearMonthDuration">P18Y</xacml:AttributeValue>
+							</xacml:Apply>
+						</cr:Apply>
+						<xacml:Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<cr:CredentialAttributeDesignator
+								CredentialId="credentialf81c48902bc34d40208ca1" DataType="xs:string"
+								AttributeId="http://www.fgov.be/eId/firstname" />
+							<cr:CredentialAttributeDesignator
+								CredentialId="credential812c05bb7a126b7fa204c1" DataType="xs:string"
+								AttributeId="http://www.banking.org/CreditCard/name" />
+						</xacml:Apply>
+						<xacml:Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<cr:CredentialAttributeDesignator
+								CredentialId="credentialf81c48902bc34d40208ca1" DataType="xs:string"
+								AttributeId="http://www.fgov.be/eId/lastname" />
+							<cr:CredentialAttributeDesignator
+								CredentialId="credential812c05bb7a126b7fa204c1" DataType="xs:string"
+								AttributeId="http://www.banking.org/CreditCard/surname" />
+						</xacml:Apply>
+					</xacml:Apply>
+				</xacml:Condition>
+			</samla:Statement>
+		</samla:Assertion>
+
+	</cl:Claim>
+
+
+
+	<cl:Claim>
+	
+		<samla:Assertion Version="2.0"
+			ID="assertionResponse" IssueInstant="2010-08-31T23:59:59">
+			<samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+			<samla:Statement xsi:type="cl:ResponseType" Decision="Indeterminate"/>
+		</samla:Assertion>
+
+		<samla:Assertion Version="2.0"
+			ID="assertion4861a1231c153b64687" IssueInstant="2010-08-31T23:59:59">
+			<samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+			<samla:Statement xsi:type="cl:StickyPolicyStatementType">
+
+				<sp:Attribute ID="#SPaddress" matching="true" AttributeURI="http://www.fgov.be/eID/address">
+					<ppl:AuthorizationsSet>
+						<ppl:AuthzUseForPurpose>
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/statistics</ppl:Purpose>
+							<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+						</ppl:AuthzUseForPurpose>
+						<ppl:AuthzDownstreamUsage allowed="true">
+							<ppl:Policy PolicyId="#SP1downstream"
+								RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+								<xacml:Target />
+								<ppl:Rule Effect="Permit" RuleId="#downstreampreference1">
+									<xacml:Target>
+										<xacml:Subjects>
+											<xacml:Subject>
+												<xacml:SubjectMatch
+													MatchId="urn:oasis:names:tc:xacml:1.0:function:boolean-equal">
+													<xacml:AttributeValue DataType="xs:boolean">true
+													</xacml:AttributeValue>
+													<xacml:SubjectAttributeDesignator
+														DataType="xs:boolean"
+														AttributeId="http://www.european-privacy-seal.eu/hasEuropeanPrivacySeal" />
+												</xacml:SubjectMatch>
+											</xacml:Subject>
+										</xacml:Subjects>
+									</xacml:Target>
+									<ppl:DataHandlingPreferences>
+										<ppl:AuthorizationsSet>
+											<ppl:AuthzUseForPurpose>
+												<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+												<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+											</ppl:AuthzUseForPurpose>
+										</ppl:AuthorizationsSet>
+										<ob:ObligationsSet>
+											<ob:Obligation>
+												<ob:TriggersSet>
+													<ob:TriggerAtTime>
+														<ob:Start>
+															<ob:StartNow />
+														</ob:Start>
+														<ob:MaxDelay>
+															<ob:Duration>P3M</ob:Duration>
+														</ob:MaxDelay>
+													</ob:TriggerAtTime>
+												</ob:TriggersSet>
+												<ob:ActionDeletePersonalData />
+											</ob:Obligation>
+										</ob:ObligationsSet>
+									</ppl:DataHandlingPreferences>
+								</ppl:Rule>
+							</ppl:Policy>
+						</ppl:AuthzDownstreamUsage>
+					</ppl:AuthorizationsSet>
+					<ob:ObligationsSet>
+						<ob:Obligation>
+							<ob:TriggersSet>
+								<ob:TriggerAtTime>
+									<ob:Start>
+										<ob:StartNow />
+									</ob:Start>
+									<ob:MaxDelay>
+										<ob:Duration>P1Y</ob:Duration>
+									</ob:MaxDelay>
+								</ob:TriggerAtTime>
+							</ob:TriggersSet>
+							<ob:ActionDeletePersonalData />
+						</ob:Obligation>
+					</ob:ObligationsSet>
+				</sp:Attribute>
+
+				<sp:Attribute ID="#SPcardnumber" matching="false" AttributeURI="http://www.banking.org/CreditCard/cardnumber">
+					<ppl:AuthorizationsSet>
+						<ppl:AuthzUseForPurpose>
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/payment</ppl:Purpose>
+						</ppl:AuthzUseForPurpose>
+					</ppl:AuthorizationsSet>
+					
+					<ob:ObligationsSet>
+						<ob:Obligation matching="false">
+							<ob:TriggersSet matching="false">
+								<ob:TriggerAtTime matching="false">
+									<ob:Start matching="true">
+										<ob:StartNow />
+									</ob:Start>
+									<ob:MaxDelay matching="false" mismatchId="mismatch2">
+										<ob:Duration>P1M</ob:Duration>
+									</ob:MaxDelay>
+								</ob:TriggerAtTime>
+							</ob:TriggersSet>
+							<ob:ActionDeletePersonalData
+								matching="true" />
+						</ob:Obligation>
+					</ob:ObligationsSet>
+					
+					<sp:Mismatches>
+						<sp:ObligationsMismatch>
+							<obmm:Duration mismatchId="mismatch2">
+								<obmm:Preference>
+									<ob:Duration>P7D</ob:Duration>
+								</obmm:Preference>
+								<obmm:Policy>
+									<ob:Duration>P1M</ob:Duration>
+								</obmm:Policy>
+							</obmm:Duration>
+						</sp:ObligationsMismatch>
+					</sp:Mismatches>
+				</sp:Attribute>
+
+				<sp:Attribute ID="#SPexpirationdate" matching="true" AttributeURI="http://www.banking.org/CreditCard/expirationdate">
+					<ppl:AuthorizationsSet>
+						<ppl:AuthzUseForPurpose>
+							<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/payment</ppl:Purpose>
+						</ppl:AuthzUseForPurpose>
+					</ppl:AuthorizationsSet>
+					<ob:ObligationsSet>
+						<ob:Obligation>
+							<ob:TriggersSet>
+								<ob:TriggerAtTime>
+									<ob:Start>
+										<ob:StartNow />
+									</ob:Start>
+									<ob:MaxDelay>
+										<ob:Duration>P1M</ob:Duration>
+									</ob:MaxDelay>
+								</ob:TriggerAtTime>
+							</ob:TriggersSet>
+							<ob:ActionDeletePersonalData />
+						</ob:Obligation>
+					</ob:ObligationsSet>
+				</sp:Attribute>
+
+			</samla:Statement>
+		</samla:Assertion>
+
+
+		<samla:Assertion IssueInstant="2010-08-31T23:59:59"
+			ID="credentialf81c48902bc34d40208ca1" Version="2.0">
+			<samla:Issuer>http://www.fgov.be</samla:Issuer>
+			<samla:AttributeStatement>
+				<samla:Attribute Name="http://www.fgov.be/eId/address"
+					cl:stickyPolicyID="#SPaddress">
+					<samla:AttributeValue>Kerkstraat 1, 1000 Brussel
+					</samla:AttributeValue>
+				</samla:Attribute>
+			</samla:AttributeStatement>
+		</samla:Assertion>
+
+		<samla:Assertion IssueInstant="2010-08-31T23:59:59"
+			ID="credentiala9237bc854b270d315b0af" Version="2.0">
+			<samla:Issuer>http://www.amex.com</samla:Issuer>
+			<samla:AttributeStatement>
+				<samla:Attribute Name="http://www.banking.org/CreditCard/cardnumber"
+					cl:stickyPolicyID="#SPcardnumber">
+					<samla:AttributeValue>123 456789 01234</samla:AttributeValue>
+				</samla:Attribute>
+				<samla:Attribute Name="http://www.banking.org/CreditCard/expirationdate"
+					cl:stickyPolicyID="#SPexpirationdate">
+					<samla:AttributeValue>2011-08-01</samla:AttributeValue>
+				</samla:Attribute>
+			</samla:AttributeStatement>
+		</samla:Assertion>
+		
+		<samla:Assertion IssueInstant="2010-08-31T23:59:59"
+			ID="assertion078908d4089aaa4c04948" Version="2.0">
+			<samla:Issuer>http://www.primelife.eu/claims/self-issued</samla:Issuer>
+			<samla:AttributeStatement>
+				<samla:Attribute Name="http://www.w3.org/2006/vcard/ns#email" 
+					cl:stickyPolicyID="#SPaddress">
+					<samla:AttributeValue>
+						<!-- To be filled in manually by user  -->
+					</samla:AttributeValue>
+				</samla:Attribute>
+			</samla:AttributeStatement>
+		</samla:Assertion>		
+
+		<samla:Assertion IssueInstant="2010-08-31T23:59:59"
+			ID="assertion1d6215689f5c5c013da860" Version="2.0">
+			<samla:Issuer>http://www.primelife.eu/ppl/credential/CrossCredentialAssertion</samla:Issuer>
+			<samla:Statement xsi:type="cl:ConditionStatementType">
+				<xacml:Condition>
+					<xacml:Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:and">
+						<cr:Apply
+							FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-less-than-or-equal">
+							<cr:CredentialAttributeDesignator
+								CredentialId="credentialf81c48902bc34d40208ca1" DataType="xs:date"
+								AttributeId="http://www.fgov.be/eID/birthdate" />
+							<xacml:Apply
+								FunctionId="urn:oasis:names:tc:xacml:1.0:function:date-subtract-yearMonthDuration">
+								<xacml:AttributeValue DataType="xs:date">2010-08-31
+								</xacml:AttributeValue>
+								<xacml:AttributeValue
+									DataType="http://www.w3.org/TR/2002/WD-xquery-operators-20020816#yearMonthDuration">P18Y</xacml:AttributeValue>
+							</xacml:Apply>
+						</cr:Apply>
+						<xacml:Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<cr:CredentialAttributeDesignator
+								CredentialId="credentialf81c48902bc34d40208ca1" DataType="xs:string"
+								AttributeId="http://www.fgov.be/eId/firstname" />
+							<cr:CredentialAttributeDesignator
+								CredentialId="credential812c05bb7a126b7fa204c1" DataType="xs:string"
+								AttributeId="http://www.banking.org/CreditCard/name" />
+						</xacml:Apply>
+						<xacml:Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+							<cr:CredentialAttributeDesignator
+								CredentialId="credentialf81c48902bc34d40208ca1" DataType="xs:string"
+								AttributeId="http://www.fgov.be/eId/lastname" />
+							<cr:CredentialAttributeDesignator
+								CredentialId="credential812c05bb7a126b7fa204c1" DataType="xs:string"
+								AttributeId="http://www.banking.org/CreditCard/surname" />
+						</xacml:Apply>
+					</xacml:Apply>
+				</xacml:Condition>
+			</samla:Statement>
+		</samla:Assertion>
+	</cl:Claim>
+</cl:Claims>
+

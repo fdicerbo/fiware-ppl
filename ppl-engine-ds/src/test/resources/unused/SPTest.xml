@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ObligationsSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.primelife.eu/ppl/obligation/mismatch">
+  <ObligationsSet xmlns="http://www.primelife.eu/ppl/obligation">
+    <Obligation>
+      <TriggersSet>
+        <TriggerPersonalDataAccessedForPurpose>
+          <Purpose xmlns="http://www.primelife.eu/ppl">http://www.w3.org/2002/01/P3Pv1/contact</Purpose>
+          <MaxDelay>
+            <Duration>P0Y0M0DT0H5M0S</Duration>
+          </MaxDelay>
+        </TriggerPersonalDataAccessedForPurpose>
+        <TriggerPersonalDataAccessedForPurpose>
+          <Purpose xmlns="http://www.primelife.eu/ppl">http://www.w3.org/2006/01/P3Pv11/delivery</Purpose>
+          <MaxDelay>
+            <Duration>P0Y0M0DT0H15M0S</Duration>
+          </MaxDelay>
+        </TriggerPersonalDataAccessedForPurpose>
+        <TriggerPersonalDataAccessedForPurpose>
+          <Purpose xmlns="http://www.primelife.eu/ppl">http://www.w3.org/2002/01/P3Pv1/pseudo-analysis</Purpose>
+          <MaxDelay>
+            <Duration>P0Y0M0DT0H0M30S</Duration>
+          </MaxDelay>
+        </TriggerPersonalDataAccessedForPurpose>
+      </TriggersSet>
+      <ActionLog />
+    </Obligation>
+    <Obligation>
+      <TriggersSet>
+        <TriggerAtTime>
+          <Start>
+            <DateAndTime>2010-08-05T11:01:58.7218025+02:00</DateAndTime>
+          </Start>
+          <MaxDelay>
+            <Duration>P0Y0M5DT0H0M0S</Duration>
+          </MaxDelay>
+        </TriggerAtTime>
+      </TriggersSet>
+      <ActionDeletePersonalData />
+    </Obligation>
+  </ObligationsSet>
+</ObligationsSet>

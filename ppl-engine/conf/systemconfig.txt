@@ -1,0 +1,12 @@
+
+# Email configuration
+
+#mail.smtp.host=mail.sap.corp
+#mail.smtp.port=25
+
+
+# Email configuration
+
+mail.smtp.host=mail.sap.corp
+mail.smtp.port=25
+from=slim.trabelsi@sap.com

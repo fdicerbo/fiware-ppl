@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE samla:Assertion>
+<samla:Assertion xmlns="urn:oasis:names:tc:SAML:2.0:assertion"
+	xmlns:samla="urn:oasis:names:tc:SAML:2.0:assertion"
+	xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cl="http://www.primelife.eu/ppl/claims"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os"
+	Version="2.0" ID="assertion1af6c003518cd91ba8832c" IssueInstant="2010-08-31T23:59:59">
+
+	<samla:Issuer>http://www.example.com</samla:Issuer>
+
+	<samla:AttributeStatement>
+		<samla:Attribute Name="http://www.primelife.eu/ppl/DataControllerID">
+			<samla:AttributeValue>http://www.example.com</samla:AttributeValue>
+		</samla:Attribute>
+	</samla:AttributeStatement>
+
+	<samla:Statement xsi:type="cl:PPLPolicyStatementType">
+		<ppl:Policy PolicyId="abc" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+		 <xacml:Target></xacml:Target>
+		</ppl:Policy>
+	</samla:Statement>
+</samla:Assertion>

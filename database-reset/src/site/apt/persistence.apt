@@ -1,0 +1,46 @@
+	----
+	Database reset
+	----
+	
+How the database reset works
+
+  To reset the database, it is sufficient to initialize the EntityManager. For each entity manager there is 
+  a different persistence unit which relates to a database scheme. We use the <<ppl>>, <<ppl-dc>> and <<ppl-3p>> databases.
+  For test purposes there is also the <<ppl-dc-test>> and <<ppl-ds-test>>. 
+
+  Which database scheme to use is specified in the <<hibernate.connection.url>> property.
+  
+  The property <<hibernate.hbm2ddl.auto>> with the value "create-drop" or "create" causes the entity manager during initialization 
+  to export the whole schema to the database and to empty existing tables. If there was a change in the ppl-schema project, 
+  it is safer to delete all tables by hand and to use the create value. 
+  In the productive mode this property is usually disabled.
+  
+  Then there is another important property: <<hibernate.archive.autodetection>>. With the value "hbm", hibernate does not 
+  try to guess the annotated classed from table names. These mappings could be placed in the persistence units.
+  Since we have many classes, the persistence.xml files would blow up. So for reusability the mappings are configured in the code. See
+  the DaoInitializer classes in core/dao and dc/dao. Without this property, the exported server.jar recognizes duplicated
+  class annotations and thus cannot be launched.
+  
+---------------------------------------------------------------------------------------------------
+<persistence-unit name="primelifePU">
+	<properties>
+		<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+		<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+		<property name="hibernate.connection.username" value="root" />
+		<property name="hibernate.connection.password" value="" />
+		<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ppl" />
+
+		<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+		<property name="hibernate.max_fetch_depth" value="3" />
+		<property name="hibernate.show.sql" value="false" />
+		<property name="hibernate.archive.autodetection" value="hbm"/>
+
+		<!-- cache configuration -->
+		<!--
+		<property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
+		-->
+		<property name="cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+	</properties>
+</persistence-unit>
+	
+---------------------------------------------------------------------------------------------------

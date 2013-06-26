@@ -1,0 +1,78 @@
+	The persistence is made by the JPA, for more information,
+	refer to the official documentation.
+
+	For our project, we used JPA to persist the different PII and policies.
+	For that, we have the different Java data types classes that were generated
+	by Hyperjaxb3, so we have already in our java classes the JPA annotation.
+
+	For the database, we used MySQL (via EasyPHP package), but his can by changed at any time and easily.
+	The configuration file is in the <<<META-INF/persistence.xml>>>.
+
+	This file contains at the first the different class that should be mapped,
+	this list we take it from the <<<persistence.xml>>> file of the generated
+	source by {{{http://java.net/projects/hyperjaxb3/}Hyperjaxb3}}.
+
+	The second part of the configuration consists of the database configuration.
+	To modify the database, it is necessary to change the host and port of the database,
+	plus the dialect and the driver corresponding to the DB.
+
+	To create database schema (assuming that empty database is already created),
+	the following configuration line has to be specified:
+
+--------------------------------------------------------
+<property name="hibernate.hbm2ddl.auto" value="create"/>
+--------------------------------------------------------
+
+	It will populate database with tables that are mapping the classes from schema
+	package.
+	To recreate database schema, e.g., after the changes in the PPL schema classes,
+	the above configuration line has to be switched to:
+
+--------------------------------------------------------------------------------
+<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+--------------------------------------------------------------------------------
+
+	but one have to be careful when using this variable, because it has to be done only one,
+	otherwise, each time that the EntityManger is loaded it create once again the DB.
+	So to delete comment this line. It is used only for generating the database schema,
+	from there.
+
+	The package <<<com.sap.research.primelife.dao>>> contains all the business
+	classes needed to represent the <Persistence> component.
+
+	The package contains an interface <<<IDao>>> that defines, in an abstract way,
+	the basis functionalities of the persistence, which are known as CRUD
+	(create, read, update and delete).
+
+
+	The <<<DaoImpl>>> class is an implementation of the <<<IDao>>> interface.
+	It's based on JPA.
+	The methods of this class use <<<Object>>> type as input and output parameters
+	to provide an abstract way to manage (persist) the different entities. 
+
+	The <<<DaoInitializer>>> class presents an implementation of the singleton design pattern,
+	to ensure the single instance of this class to one object.
+	In fact, we used this design pattern to protect the unique instantiation of the
+	<<<EntityManagerFactory>>> and the <<<EntityManager>>> attributes.
+	By calling the static method <<<getInstance()>>>, the JPA context configuration
+	is initialized and the entity manger is configured.
+
+Hibernate automatic mapping detection issue
+
+	Initially all the mappings for PPL schema classes were configured inside
+	the <<<persistence.xml>>> file. Because of a lot of duplications
+	(for DS and DC database nearly all the mapping lines were the same, not to
+	mention that DC database schema is exactly the same as Third Party db),
+	mapping were moved to the <<<DaoInitializer>>> class, inside
+	the <<<configure(String)>>> method.
+	That caused raising an exception during initialization phase (<DuplicateMappingException>),
+	but only when project was run from JAR (it didn't appear when run from Eclipse).
+	The cause of this was automatic detection and mapping of classes inside the JAR package.
+	When classes are packaged inside the JAR, Hibernate tries to map all the classes
+	implicitly. The second attempt to map classes, inside DaoInitializer class,
+	was causing the exception to be raised.
+	Following line in <<<persistence.xml>>> disables autodetection:
+
+--------------------------------------------------------------------------------
+<property name="hibernate.archive.autodetection" value="hbm"/>
+--------------------------------------------------------------------------------

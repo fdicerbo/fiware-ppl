@@ -1,0 +1,4 @@
+	An important point in the PPL Engine is the initializer.
+	To initialize the PPL Engine, we use the <<<Initializer>>> class from the
+	<<<com.sap.research.primelife.initializer>>> package.
+	There, we have the call of the different component initialization.

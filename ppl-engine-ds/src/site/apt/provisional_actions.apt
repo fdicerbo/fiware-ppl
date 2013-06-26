@@ -1,0 +1,77 @@
+	The package <<<com.sap.research.primelife.ds.pdp.provisionalAction>>>
+	represents the provisional action sub-component of the PDP.
+
+	This component process the different provisional action of the policy that
+	the DC request from the DS.
+
+	The <<<ProvisionalActionImpl>>> class implements the <<<IProvisionalAction>>> interface.
+	It is the main entry point of the <<<ProvisionalAction>>>.
+	At the first point, we loop over the different provisional action of the policy,
+	and we use the <<<ProvisionalActionFactory>>> to use the proper provisional action handler.
+
+	Until now we defined different classes for different action:
+
+	* <<<Reveal>>>: implemented
+
+	* <<<RevealUnderDHP>>>: implemented
+
+	* <<<RevealTo>>>: not yet implemeted
+
+	* <<<RevealToUnderDHP>>>: not yet implemented
+
+	* <<<Sign>>>: not yet implemented
+
+	* <<<Spend>>>: not yet implemented
+
+	Each function (class implementation) returns a result of type ActionResponse.
+	In the looping, after, we process the result of each provisional action
+	to the final <<<ProvisionalAction>>> result (aggregation of the different provisional action).
+
+Action <<<Reveal>>>
+
+	The reveal action asks the DS to reveal one PII to the DC.
+	The reveal action class implements the <<<IProvisionalAction>>> interface,
+	and the <<<handle()>>> method.
+	From there we check how many attribute it contains the element.
+	If 1 param, so it means without credential.
+	The behavior of the process is different between the element with 1 parameter
+	and the one with 2 parameters. But in all cases, here we don’t have matching process.
+
+	The process of 2 parameters (with the credential) is not well implemented yet,
+	because of the non integration of the credential handler, so no possibility of testing.
+	In fact the behavior of retrieving the preferences from the data base is different
+	from the one of uncertified PII.
+	See specification of attribute enforcement of credential PII.
+
+	Basically the reveal action calls the attribute enforcement to check whether
+	the reveal of the date is enforced or not.
+	See the attribute enforcement section and the Heart beat 5.3.2 for more details.
+
+Action <<<RevealUnderDHP>>>
+
+	The reveal under DHP (data handling policy) asks the DS to reveal one PII
+	to the DC on specifying how the latter will handle it.
+
+	It has the same idea of the reveal action, just the number of the parameter changes,
+	plus one, to indicate the DHP. The process also is the same, just adding the matching part.
+
+	This class lack also when it occurs 3 parameters (when using credential)
+	because of the same cause defined in reveal action.
+
+	See the attribute enforcement section and the Heart beat 5.3.2 for more details.
+
+Action <<<RevealTo>>>
+
+	Not yet implemented
+
+Action <<<RevealToUnderDHP>>>
+
+	Not yet implemented
+
+Action <<<Sign>>>
+
+	Not yet implemented
+
+Action <<<Spend>>>
+
+	Not yet implemented

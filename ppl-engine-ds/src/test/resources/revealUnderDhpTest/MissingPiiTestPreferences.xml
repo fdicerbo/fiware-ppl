@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ppl:Policy>
+<ppl:Policy xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xf="http://www.w3.org/TR/2002/WD-xquery-operators-20020816/#"
+	
+	PolicyId="MissingPiiTest" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+	<xacml:Target></xacml:Target>
+	
+	<ppl:Rule Effect="Permit" RuleId="#1">
+	
+	<xacml:Target>
+		<xacml:Subjects>
+			<xacml:Subject>
+				<xacml:SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+					<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://store.example.com</xacml:AttributeValue>
+					<xacml:SubjectAttributeDesignator 
+							AttributeId="http://www.primelife.eu/ppl/DataControllerID"
+							DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+				</xacml:SubjectMatch>			
+			</xacml:Subject>
+			
+		</xacml:Subjects>
+		<xacml:Resources>
+				<xacml:Resource>
+					<xacml:ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+						<xacml:AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">missingAttribute</xacml:AttributeValue>
+						<xacml:ResourceAttributeDesignator
+							AttributeId="http://www.primelife.eu/ppl/UncertifiedAttributeType"
+							DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+					</xacml:ResourceMatch>
+				</xacml:Resource>
+			</xacml:Resources>
+	</xacml:Target>
+	<ppl:DataHandlingPreferences>
+		<ppl:AuthorizationsSet>
+			<ppl:AuthzUseForPurpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/individual-analysis</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/admin</ppl:Purpose>
+				<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+			</ppl:AuthzUseForPurpose>
+			
+			<ppl:AuthzDownstreamUsage allowed="true"/>
+		</ppl:AuthorizationsSet>
+		
+		<ob:ObligationsSet>
+		<!--
+			Obligation to log (within 5 minutes) use of PII for purpose "contact" and "pseudo-analysis"
+		-->
+			<ob:Obligation>
+				<ob:TriggersSet>
+				  <ob:TriggerPersonalDataAccessedForPurpose xmlns="http://www.primelife.eu/PPL/obligation">
+					<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/contact</ppl:Purpose>
+					<ob:MaxDelay>
+					  <ob:Duration>
+						P0Y0M0DT0H5M0S
+					  </ob:Duration>
+					</ob:MaxDelay>
+				  </ob:TriggerPersonalDataAccessedForPurpose>
+				  <ob:TriggerPersonalDataAccessedForPurpose xmlns="http://www.primelife.eu/PPL/obligation">
+					<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/delivery</ppl:Purpose>
+					<ob:MaxDelay>
+					  <ob:Duration>
+						P0Y0M0DT0H15M0S
+					  </ob:Duration>
+					</ob:MaxDelay>
+				  </ob:TriggerPersonalDataAccessedForPurpose>
+				  <ob:TriggerPersonalDataAccessedForPurpose xmlns="http://www.primelife.eu/PPL/obligation">
+					<ppl:Purpose>http://www.w3.org/2002/01/P3Pv1/pseudo-analysis</ppl:Purpose>
+					<ob:MaxDelay>
+					  <ob:Duration>
+						P0Y0M0DT0H0M30S
+					  </ob:Duration>
+					</ob:MaxDelay>
+				  </ob:TriggerPersonalDataAccessedForPurpose>
+				</ob:TriggersSet>
+				<ob:ActionLog/>
+			</ob:Obligation>
+  
+  
+			<!-- Obligation to delete collected PII within 7 days -->
+			<ob:Obligation>
+				<ob:TriggersSet>
+				  <ob:TriggerAtTime>
+					<ob:Start>
+					  <ob:StartNow/>
+					</ob:Start>
+					<ob:MaxDelay>
+					  <ob:Duration>
+						P0Y0M7DT0H0M0S
+					  </ob:Duration>
+					</ob:MaxDelay>
+				  </ob:TriggerAtTime>
+				</ob:TriggersSet>
+				<ob:ActionDeletePersonalData/>
+			</ob:Obligation>
+		</ob:ObligationsSet>
+		
+	</ppl:DataHandlingPreferences>
+	
+	</ppl:Rule>
+
+	
+	
+</ppl:Policy>

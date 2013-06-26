@@ -1,0 +1,68 @@
+	Access control is a process of checking if requesting body (Data Controller)
+	could access the PII according to PII preferences policy.
+	Because all access control policy is defined in XACML format,
+	{{{http://www.herasaf.org/heras-af-xacml.html}HERAS AF}} is used to perform
+	access control check during invocation of <<<enforceAttribute()>>> method
+	in <<<AbstractAttributeEnforcement>>> class.
+
+Setting up HERAS
+
+	Initialization of HERAS PDP is done by invoking static method
+	<<<useDefaultInitializers()>>> in <<<SimplePDPFactory>>>.
+
+--------------------------------------------------------------------------------
+SimplePDPFactory.useDefaultInitializers();
+--------------------------------------------------------------------------------
+
+Policy Repository
+
+	To evaluate Data Controller request against PII preferences, we need
+	to deploy all policies and policy sets associated with PII into HERAS PDP
+	repository. Repository could be obtained by calling getter method on PDP class.
+
+--------------------------------------------------------------------------------
+PDP simplePDP = SimplePDPFactory.getSimplePDP();
+PolicyRepository repo = simplePDP.getPolicyRepository();
+--------------------------------------------------------------------------------
+
+	Before policy or policy set is deployed in HERAS repository it needs to be
+	converted to HERAS format (policy or policy set associated with PII is
+	stored in PPL format which is derived from XACML but is using different
+	classes). For that reason two static methods from <<<ConverterFunctions>>>
+	class needs to be call respectively:
+	<<<convertToHerasPolicySet()>>>, <<<convertToHerasPolicy()>>>.
+
+	Than they could be deployed by simply calling <<<deploy()>>> method:
+
+--------------------------------------------------------------------------------
+repo.deploy(evaluatable);
+--------------------------------------------------------------------------------
+
+Evaluating access control request
+
+	Access control response is obtained by evaluating request represented as
+	a <<<RequestCtx>>> class object that is wrapping <<<RequestType>>> object.
+	This object contains the request XACML target element with subject set to
+	the Data Controller identifier and resource to PII attribute name.
+	Action is always <<<read>>>.
+
+Finding applicable data handling preferences
+
+	Because preferences policy structure could be complex, with many nested
+	policy sets, policies and rules, finding appropriate rule element that
+	contains data handling preferences, as defined in PPL schema, is done
+	by using HERAS <<<TargetMatcher>>> class. It checks if the rule's target
+	element is applicable for the request target.
+
+	The search algorithm takes into account any hierarchy of policy set, policy
+	and rule elements. The <<<findApplicableRule()>>> method in
+	<<<AbstractAttributeEnforcement>>> class implements the idea about recursive
+	target matching described below.
+
+	First step of the search is to loop through the top level elements
+	(policy set or policy) and check if targets of policy set or policy and request
+	are matched. If there is a match than all policy set or policy elements
+	nested inside the current element (only policy set element could nest
+	inside more policy set or policy elements) are matched recursively.
+	If current element is policy, the rules nested inside this policy are matched.
+	The <<<findApplicableRule()>>> method returns the last applicable method found.

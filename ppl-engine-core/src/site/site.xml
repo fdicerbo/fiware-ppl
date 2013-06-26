@@ -1,0 +1,12 @@
+<project>
+	<body>
+		<menu name="Overview">
+			<item name="Introduction" href="index.html" />
+			<item name="Persistence" href="persistence.html" />
+			<item name="Marshalling" href="marshalling.html" />
+		</menu>
+
+		<menu ref="reports" />
+		<menu ref="parent" />
+	</body>
+</project>

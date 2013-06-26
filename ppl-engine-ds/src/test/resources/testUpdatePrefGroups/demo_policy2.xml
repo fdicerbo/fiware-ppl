@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is a sample SAML assertion that store.example.com sends back to 
+	the data subject after the first access attempt. It contains the policy for 
+	accessing the subscription page at store.example.com, plus the information 
+	about store.example.com itself (ID and privacy seals). -->
+
+<samla:Assertion xmlns="urn:oasis:names:tc:SAML:2.0:assertion"
+	xmlns:cl="http://www.primelife.eu/ppl/claims" xmlns:cr="http://www.primelife.eu/ppl/credential"
+	xmlns:ob="http://www.primelife.eu/ppl/obligation" xmlns:ppl="http://www.primelife.eu/ppl"
+	xmlns:xacml="urn:oasis:names:tc:xacml:2.0:policy:schema:os"
+	xmlns:samla="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	Version="2.0" ID="assertion1af6c003518cd91ba8832c" IssueInstant="2010-08-31T23:59:59">
+
+	<samla:Issuer>http://store.example.com</samla:Issuer>
+
+	<samla:AttributeStatement>
+		<samla:Attribute Name="http://www.primelife.eu/ppl/DataControllerID">
+			<samla:AttributeValue>http://store.example.com</samla:AttributeValue>
+		</samla:Attribute>
+
+		<!-- <samla:Attribute Name="http://www.european-privacy-seal.eu/hasEuropeanPrivacySeal"> 
+			<samla:AttributeValue>true</samla:AttributeValue> </samla:Attribute> -->
+	</samla:AttributeStatement>
+
+
+	<samla:Statement xsi:type="cl:PPLPolicyStatementType">
+
+		<ppl:Policy
+			RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides"
+			PolicyId="testpolicy">
+			<xacml:Target></xacml:Target>
+			<ppl:DataHandlingPolicy PolicyId="#DHP1">
+				
+
+				<ob:ObligationsSet>
+
+					<ob:Obligation>
+						<ob:TriggersSet>
+							<ob:TriggerPersonalDataAccessedForPurpose
+								xmlns="http://www.primelife.eu/PPL/obligation">
+								<ppl:Purpose>http://www.w3.org/2006/01/P3Pv11/marketing</ppl:Purpose>
+								<ob:MaxDelay>
+									<ob:Duration>P0Y0M0DT0H2M0S</ob:Duration>
+								</ob:MaxDelay>
+							</ob:TriggerPersonalDataAccessedForPurpose>
+						</ob:TriggersSet>
+						<ob:ActionLog />
+					</ob:Obligation>
+
+				</ob:ObligationsSet>
+
+			</ppl:DataHandlingPolicy>
+			<ppl:ProvisionalActions>
+
+				<ppl:ProvisionalAction ActionId="http://www.primelife.eu/ppl/RevealUnderDHP">
+					<xacml:AttributeValue DataType="xs:anyURI">http://www.example.org/names#user_name</xacml:AttributeValue>
+					<xacml:AttributeValue DataType="xs:anyURI">#DHP1</xacml:AttributeValue>
+				</ppl:ProvisionalAction>
+
+			</ppl:ProvisionalActions>
+
+		</ppl:Policy>
+	</samla:Statement>
+</samla:Assertion>
