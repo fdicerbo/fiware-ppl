@@ -98,8 +98,8 @@ public class MyServletContainer extends ServletContainer{
 		} else {
 			String webAppPath = sc.getRealPath(File.separator);
 			String log4jProp = webAppPath + log4jLocation;
-			File yoMamaYesThisSaysYoMama = new File(log4jProp);
-			if (yoMamaYesThisSaysYoMama.exists()) {
+			File testFile = new File(log4jProp);
+			if (testFile.exists()) {
 				System.out.println("Initializing log4j with: " + log4jProp);
 				PropertyConfigurator.configure(log4jProp);
 			} else {
